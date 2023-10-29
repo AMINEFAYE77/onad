@@ -16,7 +16,7 @@ class RecordController extends Controller
     }
     public function show($id)
     {
-        $records = RecordNo::wgere('RecordNo',$id)->first();
+        $records = RecordNo::where('RecordNo',$id)->first();
 
         if (empty($records)) {
            return [];
