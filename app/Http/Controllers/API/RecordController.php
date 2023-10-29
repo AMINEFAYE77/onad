@@ -14,6 +14,15 @@ class RecordController extends Controller
         $records = RecordNo::orderBy('RecordNo', 'DESC')->get();
         return $records;
     }
+    public function show($id)
+    {
+        $records = RecordNo::wgere('RecordNo',$id)->first();
+
+        if (empty($records)) {
+           return [];
+        }
+        return $records;
+    }
 
     public function day()
     {

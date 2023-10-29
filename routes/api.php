@@ -29,6 +29,8 @@ Route::get('card-by-societe/{societe_id}', [\App\Http\Controllers\API\CardIssueA
 
 Route::get('records', [\App\Http\Controllers\API\RecordController::class, 'index']);
 
+Route::get('records/{id}', [\App\Http\Controllers\API\RecordController::class, 'show']);
+
 Route::get('records-day', [\App\Http\Controllers\API\RecordController::class, 'day']);
 
 Route::get('records-week', [\App\Http\Controllers\API\RecordController::class, 'week']);
