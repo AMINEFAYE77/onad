@@ -14,6 +14,8 @@ class RecordController extends Controller
         $records = RecordNo::orderBy('RecordNo', 'DESC')->get();
         return $records;
     }
+
+
     public function show($id)
     {
         $records = RecordNo::where('RecordNo',$id)->first();
@@ -23,6 +25,31 @@ class RecordController extends Controller
         }
         return $records;
     }
+
+
+    public function update(Request $request)
+    {
+     
+        $validated = $request->validate([
+            'RecordNo' => 'required'
+        ]);
+
+        $record = new RecordNo;
+
+        $record->CardNo = $request->CardNo;
+
+        $record->zone = $request->zone;
+
+        $record->provenance = $request->provenance;
+
+        $record->date_sortie = $request->date_sortie;
+
+      
+        $record->save();
+
+        return response()->json('Mise a jour   bien crée');
+    }
+
 
     public function day()
     {

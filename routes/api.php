@@ -34,3 +34,6 @@ Route::get('records/{id}', [\App\Http\Controllers\API\RecordController::class, '
 Route::get('records-day', [\App\Http\Controllers\API\RecordController::class, 'day']);
 
 Route::get('records-week', [\App\Http\Controllers\API\RecordController::class, 'week']);
+
+Route::post('records', [\App\Http\Controllers\API\RecordController::class, 'update']);
+
