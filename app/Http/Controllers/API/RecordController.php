@@ -34,7 +34,12 @@ class RecordController extends Controller
             'RecordNo' => 'required'
         ]);
 
-        $record = new RecordNo;
+
+        $record =  RecordNo::where('RecordNo', $request->RecordNo)->first();
+
+        if (empty($record)){
+            return response()->json('record introuvable');
+        }
 
         $record->CardNo = $request->CardNo;
 
