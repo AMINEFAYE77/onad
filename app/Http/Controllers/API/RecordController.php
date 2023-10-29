@@ -11,11 +11,24 @@ class RecordController extends Controller
 
       public function index()
     {
- 
-        $records =  RecordNo::orderBy('RecordNo','DESC')->paginate(50);
+
+        $records =  RecordNo::orderBy('RecordNo','DESC')->get();
+
+       return $records;
+    }
+    public function day()
+    {
+
+        $records =  RecordNo::orderBy('RecordNo','DESC')->get();
+
+       return $records;
+    }
+    public function week()
+    {
+
+        $records =  RecordNo::orderBy('RecordNo','DESC')->get();
 
        return $records;
     }
 
 }
- 

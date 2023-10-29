@@ -28,3 +28,7 @@ Route::get('card', [\App\Http\Controllers\API\CardIssueApiController::class, 'in
 Route::get('card-by-societe/{societe_id}', [\App\Http\Controllers\API\CardIssueApiController::class, 'cardbysociete']);
 
 Route::get('records', [\App\Http\Controllers\API\RecordController::class, 'index']);
+
+Route::get('records-day', [\App\Http\Controllers\API\RecordController::class, 'day']);
+
+Route::get('records-week', [\App\Http\Controllers\API\RecordController::class, 'week']);
