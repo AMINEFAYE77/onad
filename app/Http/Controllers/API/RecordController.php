@@ -41,8 +41,6 @@ class RecordController extends Controller
             return response()->json('record introuvable');
         }
 
-        $record->CardNo = $request->CardNo;
-
         $record->zone = $request->zone;
 
         $record->provenance = $request->provenance;
