@@ -53,6 +53,25 @@ class RecordController extends Controller
         return response()->json('Mise a jour   bien crée');
     }
 
+    public function destroy(Request $request)
+    {
+     
+        $validated = $request->validate([
+            'RecordNo' => 'required'
+        ]);
+
+
+        $record =  RecordNo::where('RecordNo', $request->RecordNo)->first();
+
+        if (empty($record)){
+            return response()->json('record introuvable');
+        }
+
+        $record->delete();
+
+        return response()->json('Mise a jour   bien crée');
+    }
+
 
     public function day()
     {
