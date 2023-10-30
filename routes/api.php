@@ -37,5 +37,5 @@ Route::get('records-week', [\App\Http\Controllers\API\RecordController::class, '
 
 Route::post('records', [\App\Http\Controllers\API\RecordController::class, 'update']);
 
-Route::post('records', [\App\Http\Controllers\API\RecordController::class, 'destroy']);
+Route::post('records-delete', [\App\Http\Controllers\API\RecordController::class, 'destroy']);
 
