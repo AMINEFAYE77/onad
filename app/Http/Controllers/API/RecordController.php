@@ -11,7 +11,8 @@ class RecordController extends Controller
 
     public function index()
     {
-        $records = RecordNo::orderBy('RecordNo', 'DESC')->get();
+        $records = RecordNo::orderBy('RecordNo', 'DESC')->paginate(20);
+
         return $records;
     }
 
@@ -29,7 +30,7 @@ class RecordController extends Controller
 
     public function update(Request $request)
     {
-     
+
         $validated = $request->validate([
             'RecordNo' => 'required'
         ]);
@@ -47,7 +48,7 @@ class RecordController extends Controller
 
         $record->date_sortie = $request->date_sortie;
 
-      
+
         $record->save();
 
         return response()->json('Mise a jour   bien crée');
@@ -55,7 +56,7 @@ class RecordController extends Controller
 
     public function destroy(Request $request)
     {
-     
+
         $validated = $request->validate([
             'RecordNo' => 'required'
         ]);
