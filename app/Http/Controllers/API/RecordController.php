@@ -77,14 +77,14 @@ class RecordController extends Controller
     public function day()
     {
         // Pour obtenir les enregistrements du jour
-        $records = RecordNo::whereDate('InDateTime', today())->orderBy('RecordNo', 'DESC')->get();
+        $records = RecordNo::whereDate('InDateTime', today())->orderBy('RecordNo', 'DESC')->paginate(300);
         return $records;
     }
 
     public function week()
     {
         // Pour obtenir les enregistrements de la semaine en cours (du lundi au dimanche)
-        $records = RecordNo::whereBetween('InDateTime', [now()->startOfWeek(), now()->endOfWeek()])->orderBy('RecordNo', 'DESC')->get();
+        $records = RecordNo::whereBetween('InDateTime', [now()->startOfWeek(), now()->endOfWeek()])->orderBy('RecordNo', 'DESC')->paginate(300);
         return $records;
     }
 
