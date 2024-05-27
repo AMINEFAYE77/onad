@@ -11,7 +11,7 @@ class RecordController extends Controller
 
     public function index()
     {
-        $records = RecordNo::orderBy('RecordNo', 'DESC')->paginate(20);
+        $records = RecordNo::orderBy('RecordNo', 'DESC')->paginate(300);
 
         return $records;
     }
