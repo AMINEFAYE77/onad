@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\CardIssue;
 use Illuminate\Http\Request;
 use App\Models\RecordNo;
+use Illuminate\Support\Facades\DB;
 
 class RecordController extends Controller
 {
@@ -12,6 +14,12 @@ class RecordController extends Controller
     public function index()
     {
         $records = RecordNo::orderBy('RecordNo', 'DESC')->paginate(300);
+
+        return $records;
+    }
+   public function store(Request $request)
+    {
+        $records = new  RecordNo();
 
         return $records;
     }
@@ -56,23 +64,40 @@ class RecordController extends Controller
 
     public function destroy(Request $request)
     {
-
         $validated = $request->validate([
             'RecordNo' => 'required'
         ]);
 
+        DB::beginTransaction();
 
-        $record =  RecordNo::where('RecordNo', $request->RecordNo)->first();
+        try {
+            $record = RecordNo::where('RecordNo', $request->RecordNo)->first();
 
-        if (empty($record)){
-            return response()->json('record introuvable');
+            if (empty($record)) {
+                DB::rollBack();
+                return response()->json('record introuvable', 404);
+            }
+
+            $cardissue = CardIssue::where('CardNo', $record->CardNo)->first();
+
+            if (empty($cardissue)) {
+                DB::rollBack();
+                return response()->json('carte introuvable', 404);
+            }
+
+            $cardissue->CardAmount = $cardissue->CardAmount + $cardissue->PayAmount;
+            $cardissue->save();
+
+            $record->delete();
+
+            DB::commit();
+
+            return response()->json('Mise a jour bien crée', 200);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json('Erreur lors de la mise à jour', 500);
         }
-
-        $record->delete();
-
-        return response()->json('Mise a jour   bien crée');
     }
-
 
     public function day()
     {
