@@ -70,7 +70,7 @@ class CardIssueApiController extends Controller
 
     public function cardbysociete($societe_id)
     {
- 
+
         $cards =  CardIssue::where('societe_id',$societe_id)->get();
 
        return $cards;
@@ -79,10 +79,8 @@ class CardIssueApiController extends Controller
 
     public function index(Request $request)
     {
-        
-       return $cards =  CardIssue::all();
 
-      
+       return $cards =  CardIssue::all();
 
         return response()->json('Achat bien reussi');
     }
