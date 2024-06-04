@@ -56,6 +56,7 @@ class RecordController extends Controller
 
         $record->date_sortie = $request->date_sortie;
 
+        $record->CarStyle = $request->CarStyle;
 
         $record->save();
 
