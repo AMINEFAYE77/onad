@@ -93,7 +93,7 @@ class RecordController extends Controller
 
             DB::commit();
 
-            return response()->json('Mise a jour bien crée', 200);
+            return response()->json('Mise a jour  crée', 200);
         } catch (\Exception $e) {
             DB::rollBack();
             return response()->json('Erreur lors de la mise à jour', 500);
