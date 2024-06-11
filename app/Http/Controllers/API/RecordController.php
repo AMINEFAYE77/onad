@@ -14,13 +14,52 @@ class RecordController extends Controller
 
     public function index()
     {
-        $records = RecordNo::orderBy('RecordNo', 'DESC')->paginate(300);
+        $records = RecordNo::orderBy('RecordNo', 'DESC')->paginate(2500);
 
         return $records;
     }
    public function store(Request $request)
     {
         $records = new  RecordNo();
+
+        $record = RecordNo::create([
+            'ComputeNo' => '01',
+            'ParkNo' => '01 ',
+            'CardNo' => $request->CardNo,
+            'CarNo' => $request->CarNo,
+            'CardType' => 'Cash ',
+            'CardIndate' => '1899-12-30 00:00:00.000',
+            'CardAmount' => '691000.0000',
+            'CarType' => 'Sedan ',
+            'CarStyle' => ' ',
+            'CarColor' => ' ',
+            'MasterName' => ' ',
+            'MasterID' => ' ',
+            'MasterTel' => ' ',
+            'MasterAddr' => ' ',
+            'ParkPosition' => ' ',
+            'InTrackName' => ' ',
+            'InDateTime' => now(),
+            'InPictureName' => ' ',
+            'InOperatorName' => ' ',
+            'InStyle' => 'Auto ',
+            'OutTrackName' => '1#Exit ',
+            'OutDateTime' => now(),
+            'OutPictureName' => ' ',
+            'OutOperatorName' => 'Caissier ',
+            'OutStyle' => 'Auto ',
+            'CarFee' => '1000.0000',
+            'PayAmount' => '1000.0000',
+            'CardPayAmount' => '.0000',
+            'PayDateTime' => now(),
+            'ParkTime' => '0 ',
+            'PicInAdd' => null,
+            'PicOutAdd' => null,
+            'Remark' => ' ',
+            'date_sortie' => $request->date_sortie,
+            'zone' => $request->zone,
+            'provenance' => $request->provenance
+        ]);
 
         return $records;
     }
@@ -106,14 +145,14 @@ Log::error('debut');
     public function day()
     {
         // Pour obtenir les enregistrements du jour
-        $records = RecordNo::whereDate('InDateTime', today())->orderBy('RecordNo', 'DESC')->paginate(300);
+        $records = RecordNo::whereDate('InDateTime', today())->orderBy('RecordNo', 'DESC')->paginate(2500);
         return $records;
     }
 
     public function week()
     {
         // Pour obtenir les enregistrements de la semaine en cours (du lundi au dimanche)
-        $records = RecordNo::whereBetween('InDateTime', [now()->startOfWeek(), now()->endOfWeek()])->orderBy('RecordNo', 'DESC')->paginate(300);
+        $records = RecordNo::whereBetween('InDateTime', [now()->startOfWeek(), now()->endOfWeek()])->orderBy('RecordNo', 'DESC')->paginate(2500);
         return $records;
     }
 
