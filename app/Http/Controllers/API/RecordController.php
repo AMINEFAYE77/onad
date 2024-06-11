@@ -66,6 +66,7 @@ class RecordController extends Controller
 
     public function destroy(Request $request)
     {
+Log::error('validation');
         $validated = $request->validate([
             'RecordNo' => 'required'
         ]);
