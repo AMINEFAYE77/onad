@@ -14,7 +14,7 @@ class RecordController extends Controller
 
     public function index()
     {
-        $records = RecordNo::orderBy('RecordNo', 'DESC')->paginate(100);
+        $records = RecordNo::orderBy('RecordNo', 'DESC')->paginate(2500);
 
         return $records;
     }
@@ -145,14 +145,14 @@ Log::error('debut');
     public function day()
     {
         // Pour obtenir les enregistrements du jour
-        $records = RecordNo::whereDate('InDateTime', today())->orderBy('RecordNo', 'DESC')->paginate(100);
+        $records = RecordNo::whereDate('InDateTime', today())->orderBy('RecordNo', 'DESC')->paginate(2500);
         return $records;
     }
 
     public function week()
     {
         // Pour obtenir les enregistrements de la semaine en cours (du lundi au dimanche)
-        $records = RecordNo::whereBetween('InDateTime', [now()->startOfWeek(), now()->endOfWeek()])->orderBy('RecordNo', 'DESC')->paginate(100);
+        $records = RecordNo::whereBetween('InDateTime', [now()->startOfWeek(), now()->endOfWeek()])->orderBy('RecordNo', 'DESC')->paginate(2500);
         return $records;
     }
 
