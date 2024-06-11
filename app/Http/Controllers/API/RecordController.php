@@ -7,6 +7,7 @@ use App\Models\CardIssue;
 use Illuminate\Http\Request;
 use App\Models\RecordNo;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class RecordController extends Controller
 {
@@ -68,7 +69,7 @@ class RecordController extends Controller
         $validated = $request->validate([
             'RecordNo' => 'required'
         ]);
-
+Log::error('debut');
         DB::beginTransaction();
 
         try {
@@ -93,6 +94,7 @@ class RecordController extends Controller
 
             DB::commit();
 
+            Log::error('ok termine');
             return response()->json('Mise a jour  crée', 200);
         } catch (\Exception $e) {
             DB::rollBack();
